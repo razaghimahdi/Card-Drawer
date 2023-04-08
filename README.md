@@ -1,6 +1,6 @@
 # Card Drawer
 
-`Card Drawer` is a library that allows developers to add a custom cool Drawer to their Jetpack
+`CardDrawer` is a library that allows developers to add a custom cool Drawer to their Jetpack
 Compose apps. The library provides a customizable drawer that lets users select items, with options
 for updating the selected date and other settings.
 
