@@ -56,7 +56,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.13.0"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.13.0"
 
-    implementation project(':library')
+    // implementation project(':library')
 
-
+    implementation 'com.github.razaghimahdi:Card-Drawer:1.0.0'
 }
