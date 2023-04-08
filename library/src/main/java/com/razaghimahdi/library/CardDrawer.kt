@@ -72,7 +72,7 @@ fun CardDrawer(
     val screenWidth = configuration.screenWidthDp.dp.toPx()
 
 
-    val endContentXPosition = screenWidth / 1.4f
+    val endContentXPosition = screenWidth / ThresholdXPosition
 
 
 
@@ -109,15 +109,14 @@ fun CardDrawer(
                         // IntOffset(drawerState.offset.value.roundToInt(), 0)
 
                         val x = (drawerState.offset.value.roundToInt())
-                        if (x <= (screenWidth / 1.4f).roundToInt()) {
+                        if (x <= (screenWidth / ThresholdXPosition).roundToInt()) {
                             IntOffset(x, 0)
                         } else {
-                            IntOffset((screenWidth / 1.4f).roundToInt(), 0)
+                            IntOffset((screenWidth / ThresholdXPosition).roundToInt(), 0)
                         }
 
-
                     }
-                     .width(endContentXPosition.toDp())
+                    .width(endContentXPosition.toDp())
                     .widthIn(0.dp, endContentXPosition.toDp())
                     .semantics {
                         paneTitle = "FullDrawerLayout"
@@ -137,22 +136,21 @@ fun CardDrawer(
                 Column(content = drawerContent)
             }
 
-
-
             Surface(
                 Modifier
                     .fillMaxSize()
                     .offset {
                         val x = (drawerState.offset.value.roundToInt() + screenWidth.roundToInt())
-                        if (x <= (screenWidth / 1.4f).roundToInt()) {
+                        if (x <= (screenWidth / ThresholdXPosition).roundToInt()) {
                             IntOffset(x, 0)
                         } else {
-                            IntOffset((screenWidth / 1.4f).roundToInt(), 0)
+                            IntOffset((screenWidth / ThresholdXPosition).roundToInt(), 0)
                         }
                     }
                     .graphicsLayer {
-                         rotationY = (-((25 * (drawerState.offset.value / screenWidth)) + 25))
-                         cameraDistance = 8 * density
+                        rotationY =
+                            (-((ThresholdYRotation * (drawerState.offset.value / screenWidth)) + ThresholdYRotation))
+                        cameraDistance = ThresholdCameraDistance * density
                     },
                 color = contentBackgroundColor,
                 shape = RoundedCornerShape((((contentCornerSize.value * (drawerState.offset.value / screenWidth)) + contentCornerSize.value).roundToInt().dp))
@@ -163,3 +161,8 @@ fun CardDrawer(
         }
     }
 }
+
+
+private const val ThresholdXPosition = 1.4f
+private const val ThresholdYRotation = 25
+private const val ThresholdCameraDistance = 8
