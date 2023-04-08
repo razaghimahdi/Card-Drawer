@@ -69,100 +69,11 @@ fun CardDrawer(
     val scope = rememberCoroutineScope()
 
     val configuration = LocalConfiguration.current
-    val screenHeight = configuration.screenHeightDp.dp.toPx()
     val screenWidth = configuration.screenWidthDp.dp.toPx()
 
 
-    val startContentXPosition = 0f
     val endContentXPosition = screenWidth / 1.4f
 
-    val startDrawerYRotation = 0f
-    val endDrawerYRotation = -25f
-
-    val startDrawerXPosition = 0f
-    val endDrawerXPosition = -screenWidth
-
-/*
-    var currentCornerShapeContent by remember {
-        mutableStateOf(RoundedCornerShape(contentCornerSize))
-    }
-
-
-    currentCornerShapeContent = if (contentCornerSize != 0.dp) {
-        RoundedCornerShape((((contentCornerSize.value * (drawerState.offset.value / screenWidth)) + contentCornerSize.value).roundToInt().dp))
-        RoundedCornerShape(contentCornerSize)
-    } else {
-        RoundedCornerShape(
-            0.dp
-        )
-    }
-    */
-
-/*
-
-    var drawerYRotation by remember { mutableStateOf(startDrawerYRotation) }
-    val contentXPosition = remember { Animatable(startContentXPosition) }
-    val drawerXPosition = remember { Animatable(startDrawerXPosition) }
-
-    if (drawerState.currentValue == DrawerLayoutValue.Open) {
-
-        LaunchedEffect(Unit) {
-            launch {
-                contentXPosition.animateTo(
-                    endContentXPosition,
-                    animationSpec = drawerState.AnimationSpec,
-                )
-            }
-
-            launch {
-                drawerXPosition.animateTo(
-                    startDrawerXPosition,
-                    animationSpec = drawerState.AnimationSpec,
-                )
-            }
-
-            launch {
-                animate(
-                    initialValue = startDrawerYRotation,
-                    targetValue = endDrawerYRotation,
-                    animationSpec = drawerState.AnimationSpec,
-                ) { value: Float, _: Float ->
-                    drawerYRotation = value
-                }
-            }
-        }
-
-    } else {
-
-        LaunchedEffect(Unit) {
-            launch {
-                contentXPosition.animateTo(
-                    startContentXPosition,
-                    animationSpec = drawerState.AnimationSpec,
-                )
-            }
-
-            launch {
-                drawerXPosition.animateTo(
-                    endDrawerXPosition,
-                    animationSpec = drawerState.AnimationSpec,
-                )
-            }
-
-            launch {
-                animate(
-                    initialValue = endDrawerYRotation,
-                    targetValue = startDrawerYRotation,
-                    animationSpec = drawerState.AnimationSpec,
-                ) { value: Float, _: Float ->
-                    drawerYRotation = value
-                }
-            }
-        }
-
-    }
-
-*/
 
 
     BoxWithConstraints(modifier.background(drawerBackgroundColor)) {
@@ -206,8 +117,7 @@ fun CardDrawer(
 
 
                     }
-                    // .offset(x = drawerXPosition.value.toDp())
-                    .width(endContentXPosition.toDp())
+                     .width(endContentXPosition.toDp())
                     .widthIn(0.dp, endContentXPosition.toDp())
                     .semantics {
                         paneTitle = "FullDrawerLayout"
@@ -240,13 +150,9 @@ fun CardDrawer(
                             IntOffset((screenWidth / 1.4f).roundToInt(), 0)
                         }
                     }
-                    //.offset(x = contentXPosition.value.toDp())
                     .graphicsLayer {
-                        // rotationY = if(drawerState.isClosed) 0f else  (1 - (drawerState.offset.value / (screenWidth / 1.4f))) * -45f
-                        rotationY = (-((25 * (drawerState.offset.value / screenWidth)) + 25))
-                        // rotationY = drawerYRotation
-                        // cameraDistance = screenWidth + screenHeight
-                        cameraDistance = 8 * density
+                         rotationY = (-((25 * (drawerState.offset.value / screenWidth)) + 25))
+                         cameraDistance = 8 * density
                     },
                 color = contentBackgroundColor,
                 shape = RoundedCornerShape((((contentCornerSize.value * (drawerState.offset.value / screenWidth)) + contentCornerSize.value).roundToInt().dp))
