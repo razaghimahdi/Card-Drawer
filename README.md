@@ -5,6 +5,13 @@ Compose apps. The library provides a customizable drawer that lets users select 
 
 [![](https://jitpack.io/v/razaghimahdi/Card-Drawer.svg)](https://jitpack.io/#razaghimahdi/Card-Drawer)
 
+
+| Opened | Closed |
+| --- | --- |
+| ![](screenshots/2.jpg) | ![](screenshots/1.jpg) |
+
+
+
 ## Quickstart
 
 Here's a quick example of how to use the library:
@@ -31,6 +38,7 @@ Here's a quick example of how to use the library:
 
 ```kotlin
 val drawerState = rememberCardDrawerState(initialValue = CardDrawerValue.Closed)
+val coroutineScope = rememberCoroutineScope()
 
 CardDrawer(
     drawerState = drawerState,
@@ -38,6 +46,13 @@ CardDrawer(
 ) {
     MainScreen(drawerState)
 }
+
+// make it open
+coroutineScope.launch { drawerState.open()}
+
+// make it close
+coroutineScope.launch { drawerState.close()}
+
 ```
 
 4. Customize CardDrawer:
