@@ -8,7 +8,7 @@ Compose apps. The library provides a customizable drawer that lets users select 
 
 | Opened | Closed |
 | --- | --- |
-| ![](screenshots/2.jpg) | ![](screenshots/1.jpg) |
+| <img src="screenshots/2.jpg" width="300"/> | <img src="screenshots/1.jpg" width="300"/> |
 
 
 
